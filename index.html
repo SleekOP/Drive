@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121c1c">
+  <meta name="description" content="A cinematic Dhaka 300 Feet Road traffic chase with cockpit and chase camera views.">
+  <title>300 Feet — Highway Pursuit</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mirror.css">
+  <link rel="stylesheet" href="dialogue.css">
+  <link rel="stylesheet" href="camera.css">
+  <link rel="stylesheet" href="controls.css">
+  <link rel="stylesheet" href="racing-view.css">
+  <link rel="stylesheet" href="mobile-layout.css">
+</head>
+<body>
+  <aside class="rotate-prompt" aria-live="polite"><div class="rotate-phone" aria-hidden="true"><i></i></div><strong>ROTATE YOUR PHONE</strong><p>Turn your phone sideways to landscape to play.</p><p lang="bn">খেলার জন্য ফোনটি আড়াআড়ি করে ঘোরান</p></aside>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="300 Feet home"><span class="brand-mark">٣</span><span>300<span class="brand-light"> FEET</span></span><span class="brand-rule"></span><span class="brand-caption">DHAKA ROAD RUN</span></a>
+      <div class="live-label"><span class="live-dot"></span> DHAKA, BANGLADESH<br class="mobile-location-break"><span class="top-separator">/</span> 300 FEET ROAD</div>
+      <div class="media-controls"><button id="radioButton" class="media-button radio-button" aria-label="রেডিও ফুর্তি চালু করুন">♫ <span id="radioLabel">FOORTI 88.0 · বন্ধ</span></button><input id="radioVolume" class="radio-volume" type="range" min="0" max="100" step="1" value="55" aria-label="রেডিওর ভলিউম" title="রেডিও ভলিউম"><button id="soundButton" class="icon-button" aria-label="সাউন্ড এফেক্ট বন্ধ করুন" title="ইঞ্জিন, সাইরেন ও দুর্ঘটনার শব্দ"><span id="soundIcon">◉</span></button></div>
+    </header>
+
+    <section class="dashboard" aria-label="Driving information">
+      <div class="readout speed-readout"><span class="readout-label">গতি · SPEED</span><div class="speed-gauge"><div class="speed-number"><span id="speed">০</span><span class="readout-unit">km/h</span><span class="speed-cap">/ ১৮০</span></div><div class="speed-meter-track"><i id="speedArc" class="speed-meter-fill" role="progressbar" aria-label="গতি · SPEED" aria-valuemin="0" aria-valuemax="180" aria-valuenow="0"></i></div></div><div class="speed-limit"><span class="limit-sign">60</span><span>সীমা · LIMIT</span><span id="overspeed" class="warning-tag hidden">গতি বেশি · OVERSPEED</span><span id="handlingWarning" class="warning-tag hidden">স্টিয়ারিং শক্ত · HARD TO HANDLE</span></div></div>
+      <div class="readout route-readout"><div class="route-top"><span class="readout-label" id="routeLabel">গন্তব্য · DESTINATION</span><span class="route-eta">ঢাকা · ৩০০ ফিট</span></div><div class="route-name" id="routeName">নীলা মার্কেট<span class="route-arrow"> ↗</span></div><div class="route-track"><div class="route-fill" id="routeFill"></div><span class="route-pin start-pin"></span><span class="route-pin end-pin">✦</span></div><div class="route-bottom"><span id="distance">২.০০ কিমি বাকি</span><span class="route-small" id="routeDirection">উত্তরমুখী</span></div></div>
+      <div class="readout time-readout"><span class="readout-label" id="timerLabel">পৌঁছানোর সময় · ETA</span><div class="readout-value timer-value" id="timer">১:৩০</div><div class="time-caption"><span class="time-pulse"></span><span id="timeCaption">৯০ সেকেন্ড</span></div></div>
+    </section>
+
+    <section class="scene-wrap" aria-label="ঢাকা ৩০০ ফিট রোড ড্রাইভিং গেম">
+      <canvas id="game" aria-label="রাস্তার দৃশ্য। তীর চিহ্ন বা WASD দিয়ে গাড়ি চালান।"></canvas>
+      <div class="scene-vignette"></div>
+      <div class="scene-topline"><span class="location-pill"><span class="location-dot"></span> ঢাকা · ৩০০ ফিট</span><div class="scene-actions"><button id="cameraToggle" class="weather-pill" type="button" aria-label="ককপিট ক্যামেরায় যান">◉ &nbsp;CHASE CAM</button><button id="rainToggle" class="weather-pill" type="button" aria-label="বৃষ্টি চালু করুন">☂ &nbsp;NO RAIN</button><button id="headlightToggle" class="weather-pill headlight-toggle" type="button" aria-label="হেডলাইট বন্ধ করুন" title="Headlights on">☼</button><button id="menuButton" class="weather-pill menu-button" type="button" aria-label="গেম মেনু খুলুন">☰ &nbsp;MENU</button><button id="timeToggle" class="weather-pill" type="button" aria-label="রাতের মোড চালু করুন">☀ &nbsp;সোনালি বিকেল</button></div></div>
+      <div id="cockpitSpeed" class="cockpit-speed hidden"><span class="cockpit-speed-label">KM/H</span><strong id="cockpitSpeedValue">০</strong><i id="cockpitSpeedNeedle"></i><span class="cockpit-speed-limit">LIMIT 60</span></div>
+      <div id="takaWallet" class="taka-wallet" aria-live="polite"><span>৳</span> <strong id="takaBalance">০</strong></div>
+      <div class="drive-controls" role="group" aria-label="Mobile driving controls"><button data-action="accelerate" aria-label="Accelerate">↑</button><button data-action="left" aria-label="Steer left">←</button><button data-action="brake" aria-label="Brake or reverse">↓</button><button data-action="right" aria-label="Steer right">→</button></div>
+      <div id="policeAlert" class="police-alert hidden"><span class="police-flash"></span><span>পুলিশ ধাওয়া করছে</span><span class="alert-distance" id="policeDistance">পেছনে</span></div>
+      <div id="rearview" class="rearview hidden" aria-label="পেছনের আয়নায় পুলিশ গাড়ি"><span class="mirror-label">পেছনের আয়না · REAR VIEW</span><div class="mirror-scene"><span class="mirror-road-mark"></span><div id="policeBubble" class="mirror-police-bubble">এই গাড়ি থামা</div><div class="mirror-cop-car"><i></i><b></b><i></i></div></div><span class="mirror-caption" id="mirrorCaption">পুলিশ পেছনে আছে</span></div>
+      <div id="startScreen" class="modal-screen">
+        <div class="intro-card">
+          <div class="eyebrow"><span class="eyebrow-line"></span> DHAKA, BANGLADESH <span class="eyebrow-line"></span></div>
+          <h1>ঢাকার পথে<br><span>৯০ সেকেন্ড.</span></h1>
+          <p id="introMessage">৩০০ ফিট রোডে নীলা মার্কেটে পৌঁছান ৯০ সেকেন্ডে। সাবধানে চালান, গতিসীমা মানুন।</p>
+          <div class="intro-stats"><div><strong>০১:৩০</strong><span>সময় · ON THE CLOCK</span></div><i></i><div><strong>২.০ <small>KM</small></strong><span>নীলা মার্কেট</span></div><i></i><div><strong>৬০ <small>KM/H</small></strong><span>গতিসীমা · LIMIT</span></div></div>
+          <div class="start-actions"><button id="startButton" class="primary-button">যাত্রা শুরু · START <span>↗</span></button><button id="freeDriveButton" class="secondary-button">মুক্ত ড্রাইভ · FREE DRIVE <span>∞</span></button></div>
+          <div class="controls-copy"><span>↑</span> ACCELERATE <span class="controls-gap">↓</span> BRAKE <span class="controls-gap">← →</span> STEER <span class="controls-mobile">OR USE ON-SCREEN CONTROLS</span></div>
+        </div>
+        <div class="modal-footer"><span>✳ &nbsp;ঢাকার পথে সাবধানে চালান</span><span>একটি মৌলিক গেম</span></div>
+      </div>
+
+      <div id="fineScreen" class="modal-screen hidden"><div class="intro-card fine-card"><div class="eyebrow"><span class="eyebrow-line"></span>পুলিশ থামিয়েছে · STOPPED<span class="eyebrow-line"></span></div><h2>স্পিডিং জরিমানা</h2><p id="fineMessage">চালিয়ে যেতে ৳৫০০ জরিমানা দিন।</p><div class="fine-balance">ওয়ালেট · <strong id="fineBalance">৳০</strong></div><button id="payFineButton" class="primary-button">৳৫০০ জরিমানা দিন · CONTINUE <span>↗</span></button><button id="declineFineButton" class="secondary-button fine-decline">ড্রাইভ শেষ করুন · END DRIVE</button></div></div>
+      <div id="endScreen" class="modal-screen hidden"><div class="intro-card end-card"><div class="eyebrow"><span class="eyebrow-line"></span><span id="endEyebrow">নীলা মার্কেটে পৌঁছেছেন</span><span class="eyebrow-line"></span></div><h1 id="endTitle">দারুণ<br><span>যাত্রা শেষ.</span></h1><p id="endMessage">৩০০ ফিট রোডে সাবধানে চালানোর জন্য ধন্যবাদ।</p><div class="result-stats"><div><strong id="resultTime">০০:০০</strong><span>সময় · TIME</span></div><div><strong id="resultSpeed">0</strong><span>সর্বোচ্চ গতি · KM/H</span></div><div><strong id="resultNearMisses">0</strong><span>কাছাকাছি · CLOSE CALLS</span></div></div><button id="restartButton" class="primary-button">আবার চালান · DRIVE AGAIN <span>↻</span></button></div></div>
+      <div id="historyScreen" class="modal-screen hidden"><div class="intro-card history-card"><div class="eyebrow"><span class="eyebrow-line"></span>এই ডিভাইসের রেকর্ড<span class="eyebrow-line"></span></div><h2>আমার যাত্রা</h2><p>ব্যক্তিগত সেরা ও সাম্প্রতিক রানের তালিকা। রেকর্ড এই ব্রাউজারেই থাকে।</p><div id="historyList" class="history-list"></div><button id="closeHistoryButton" class="secondary-button">ফিরে যান · BACK</button></div></div>
+      <div id="modeMenu" class="modal-screen hidden"><div class="intro-card history-card menu-card"><div class="eyebrow"><span class="eyebrow-line"></span>গেম মেনু · GAME MENU<span class="eyebrow-line"></span></div><h2>কোন মোড খেলবেন?</h2><p id="modeStatus">এখন চলছে · CURRENT MODE</p><div class="start-actions"><button id="menuChaseButton" class="primary-button">পুলিশ চেজ · THE RUN <span>↗</span></button><button id="menuFreeButton" class="secondary-button">মুক্ত ড্রাইভ · FREE DRIVE <span>∞</span></button></div><div class="player-presence"><strong>Currently playing</strong><span><b id="playerCount">১</b> <span id="playerCountLabel">open game tabs on this device</span></span><small>শুধু এই ডিভাইসে · This device only</small></div><button id="closeMenuButton" class="secondary-button menu-resume">চালিয়ে যান · RESUME</button></div></div>
+    </section>
+    <footer class="bottom-bar"><span class="road-quote">Created by Sleek</span><span class="police-meter-wrap"><span id="policeMeterLabel">পুলিশ ধাওয়া করছে না · POLICE CLEAR</span><span class="police-meter"><i id="policeMeter"></i></span></span><button id="historyButton" class="history-button">ইতিহাস · HISTORY</button><span class="bottom-credit">FOR ENTERTAINMENT ONLY · DRIVE SAFELY IRL<br>বাস্তবে নিরাপদে চালান</span></footer>
+  </main>
+  <audio id="radioStream" src="https://radiofoorti.fm/api/stream" preload="none"></audio>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+  <script src="racing-loader.js"></script>
+</body>
+</html>

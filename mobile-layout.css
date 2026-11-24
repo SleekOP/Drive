@@ -1,0 +1,46 @@
+.rotate-prompt{display:none}
+.mobile-location-break{display:none}
+@keyframes phone-turn{to{transform:rotate(90deg)}}
+
+@media (max-width:800px) and (orientation:portrait){
+  .rotate-prompt{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;background:radial-gradient(ellipse at 50% 38%,#253b36 0,#101817 68%);color:#f1ead8;font-family:var(--font-body)}
+  .rotate-prompt strong{margin-top:24px;font:800 21px var(--font-head);letter-spacing:2px;color:#f1d29a}
+  .rotate-prompt p{margin:8px 0 0;color:#c9d0c4;font-size:14px;line-height:1.5}
+  .rotate-prompt p[lang="bn"]{color:#a9d7bd}
+  .rotate-phone{width:43px;height:76px;border:3px solid #e7dec9;border-radius:9px;position:relative;animation:phone-turn 1.8s ease-in-out infinite alternate;box-shadow:0 0 18px #e3c98535}
+  .rotate-phone:before{content:"";position:absolute;left:50%;top:4px;transform:translateX(-50%);width:11px;height:2px;border-radius:3px;background:#e7dec9}
+  .rotate-phone:after{content:"";position:absolute;left:50%;bottom:4px;transform:translateX(-50%);width:5px;height:5px;border:1px solid #e7dec9;border-radius:50%}
+  .rotate-phone i{position:absolute;right:-22px;top:-13px;width:21px;height:21px;border:2px solid #ef9a67;border-left-color:transparent;border-radius:50%;transform:rotate(28deg)}
+  .rotate-phone i:after{content:"";position:absolute;right:-3px;top:0;border-top:5px solid #ef9a67;border-left:4px solid transparent;border-right:4px solid transparent;transform:rotate(34deg)}
+}
+
+@media (max-height:650px) and (orientation:landscape){
+  html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+  body{display:block;padding:0}
+  .game-shell{width:100vw;height:100vh;height:100svh;min-height:0;border:0;display:flex;flex-direction:column;box-shadow:none}
+  .topbar{height:46px;min-height:46px;padding:0 8px;flex:none;display:grid;grid-template-columns:auto minmax(70px,1fr) auto;gap:7px}
+  .brand{font-size:15px;gap:4px;white-space:nowrap}.brand-mark{width:20px;height:20px;font-size:14px}.brand-rule{height:16px;margin-left:3px}.brand-caption{display:inline;font-size:6px;letter-spacing:.35px}
+  .live-label{display:block;min-width:0;text-align:center;white-space:normal;line-height:1.25;font-size:6px;letter-spacing:.25px}.mobile-location-break{display:block}.top-separator{margin:0 2px}.media-controls{gap:4px;justify-self:end}.radio-button{display:inline-block;height:26px;max-width:118px;overflow:hidden;white-space:nowrap;text-overflow:clip;padding:0 5px;font-size:7px;letter-spacing:.2px}.radio-button span{display:inline}.radio-volume{display:block;width:38px;height:18px;padding:0}.icon-button{width:25px;height:25px;flex:none}
+  .dashboard{height:68px;min-height:68px;flex:none;grid-template-columns:1fr 1.45fr .82fr}
+  .readout{padding:6px 12px 4px}.readout-label{font-size:7px;letter-spacing:.8px}.speed-number #speed{font-size:26px}.speed-gauge{height:39px;margin-top:0}.speed-number{height:26px}.speed-meter-track{height:4px;margin-top:4px}.speed-limit{font-size:6px;margin-top:2px}.limit-sign{width:13px;height:13px;font-size:6px}
+  .route-readout{padding:6px 14px 4px}.route-name{font-size:18px;margin:2px 0 4px}.route-eta,.route-small{font-size:6px}.route-bottom{font-size:7px;margin-top:4px}.route-track{height:2px}
+  .time-readout{padding:6px 12px 4px}.timer-value{font-size:27px}.time-caption{font-size:6px;margin-top:2px}
+  .scene-wrap{height:auto;min-height:0;flex:1;width:100%;}
+  .scene-topline{top:7px;left:9px;right:9px}.location-pill,.weather-pill{padding:6px 8px;font-size:6px;letter-spacing:.35px}.scene-actions{gap:4px}
+  .bottom-bar{height:40px;min-height:40px;flex:none;padding:0 8px;display:grid;grid-template-columns:auto minmax(80px,1fr) auto auto;align-items:center;gap:8px}.road-quote{display:block;font-size:6px;white-space:nowrap}.police-meter-wrap{width:100%;min-width:80px;font-size:6px;gap:2px}.police-meter{height:3px}.history-button{display:inline-block;font-size:6px;padding:4px 5px;white-space:nowrap}.bottom-credit{display:block;max-width:120px;font-size:5.5px;line-height:1.2;letter-spacing:0;text-align:right;white-space:nowrap}
+  .drive-controls{position:absolute;z-index:3;left:14px;bottom:12px;display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(2,44px);gap:5px;touch-action:none}
+  .drive-controls button{width:48px;height:44px;border:1px solid #e7dfca66;border-radius:13px;background:#101917c9;color:#fff4d8;font-size:21px;box-shadow:0 3px 12px #0007;backdrop-filter:blur(8px);touch-action:none;user-select:none;-webkit-user-select:none}
+  .drive-controls button:active{background:#ed7954;border-color:#ffd4a5;transform:scale(.95)}
+  .drive-controls [data-action="accelerate"]{grid-column:2;grid-row:1}.drive-controls [data-action="left"]{grid-column:1;grid-row:2}.drive-controls [data-action="brake"]{grid-column:2;grid-row:2}.drive-controls [data-action="right"]{grid-column:3;grid-row:2}
+  .cockpit-speed{width:78px;height:78px;right:14px;bottom:12px}.cockpit-speed strong{font-size:22px}.cockpit-speed i{top:9px;height:30px}.cockpit-speed-label{font-size:6px}.cockpit-speed-limit{font-size:5px;margin-top:3px}
+  .modal-screen{padding:12px 18px 30px}.intro-card{max-height:100%;overflow:auto;width:min(390px,58vw);padding:14px 18px}.intro-card h1{font-size:40px;margin:9px 0}.intro-card>p{font-size:9px;line-height:1.45;margin-bottom:8px}.intro-stats{margin:8px 0;gap:9px}.intro-stats strong{font-size:15px}.intro-stats>div>span{font-size:5px}.start-actions{gap:5px}.primary-button,.secondary-button{padding:8px 10px;font-size:8px}.controls-copy{margin-top:6px;font-size:7px}.modal-footer{left:18px;right:18px;bottom:8px;font-size:5px}
+  .police-alert{top:44px;right:10px;left:auto;transform:none;padding:6px 8px;font-size:7px}.rearview{top:44px;left:10px;width:120px}.mirror-scene{height:42px}
+}
+
+/* Compact landscape phone layout; all labels and controls stay available. */
+@media (max-height:520px) and (orientation:landscape){
+ .topbar{height:40px;min-height:40px;padding:0 7px;gap:5px}.brand{font-size:14px}.brand-mark{width:18px;height:18px;font-size:13px}.brand-caption{font-size:5.5px}.live-label{font-size:5.5px;letter-spacing:.2px}.radio-button{height:23px;max-width:108px;font-size:6.5px}.radio-volume{width:32px}.icon-button{width:23px;height:23px}
+ .dashboard{height:60px;min-height:60px}.readout{padding:5px 9px 3px}.readout-label{font-size:6.5px}.speed-number #speed{font-size:23px}.speed-gauge{height:34px}.speed-number{height:23px}.speed-limit{font-size:5.8px}.route-readout{padding:5px 11px 3px}.route-name{font-size:16px;margin:1px 0 3px}.route-eta,.route-small{font-size:5.5px}.route-bottom{font-size:6.5px}.time-readout{padding:5px 9px 3px}.timer-value{font-size:24px}.time-caption{font-size:5.5px}
+ .bottom-bar{height:34px;min-height:34px;gap:6px}.police-meter-wrap{font-size:5.5px}.history-button{font-size:5.7px}.bottom-credit{font-size:5px}
+ .scene-topline{top:5px}.scene-topline .weather-pill,.location-pill{padding:5px 7px;font-size:5.5px}.scene-actions{gap:3px}
+}
